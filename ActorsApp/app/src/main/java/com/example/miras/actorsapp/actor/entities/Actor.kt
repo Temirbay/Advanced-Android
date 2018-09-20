@@ -1,4 +1,4 @@
-package com.example.miras.actorsapp
+package com.example.miras.actorsapp.actor.entities
 
 data  class Actor (
     val name : String,

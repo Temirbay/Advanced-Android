@@ -1,13 +1,18 @@
-package com.example.miras.actorsapp
+package com.example.miras.actorsapp.actor
+
+import com.example.miras.actorsapp.actor.entities.Actor
+import com.example.miras.actorsapp.core.BaseListener
+import com.example.miras.actorsapp.core.IPresenter
+import com.example.miras.actorsapp.core.IView
 
 interface ActorListContract {
 
-    interface View : BaseView<Presenter>{
+    interface View : IView<Presenter> {
         fun setAdapter (items : ArrayList<Actor>)
         fun showMessage (message : String)
     }
 
-    interface Presenter : BasePresenter<View>{
+    interface Presenter : IPresenter<View> {
         fun addActor(actor : Actor)
         fun getActors ()
     }

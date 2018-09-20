@@ -1,4 +1,7 @@
-package com.example.miras.actorsapp
+package com.example.miras.actorsapp.actor
+
+import com.example.miras.actorsapp.actor.entities.Actor
+import com.example.miras.actorsapp.core.BaseListener
 
 class ActorRepositoryImpl : ActorListContract.Repository {
 

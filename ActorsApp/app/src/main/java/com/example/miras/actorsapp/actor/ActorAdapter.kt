@@ -1,10 +1,12 @@
-package com.example.miras.actorsapp
+package com.example.miras.actorsapp.actor
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.View
+import com.example.miras.actorsapp.R
+import com.example.miras.actorsapp.actor.entities.Actor
 import kotlinx.android.synthetic.main.item_actor.view.*
 
 class ActorAdapter(private val context : Context,

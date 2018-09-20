@@ -1,4 +1,6 @@
-package com.example.miras.actorsapp
+package com.example.miras.actorsapp.core
+
+import com.example.miras.actorsapp.actor.entities.Actor
 
 interface BaseListener {
 
