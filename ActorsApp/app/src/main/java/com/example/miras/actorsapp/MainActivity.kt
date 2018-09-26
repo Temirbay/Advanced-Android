@@ -3,6 +3,7 @@ package com.example.miras.actorsapp
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.widget.Toast
 import com.example.miras.actorsapp.actor.entities.Actor
 import com.example.miras.actorsapp.actor.ActorAdapter
@@ -35,7 +36,8 @@ class MainActivity : AppCompatActivity(), ActorListContract.View {
     }
 
     private fun addActor() {
-        presenter.addActor(Actor("Johny", "Depp", "Pirates of the Caribbean"))
+        presenter.addActor(Actor("Johny", "Depp",
+                "Pirates of the Caribbean"))
     }
 
     override fun setAdapter(items: ArrayList<Actor>) {
