@@ -1,8 +1,11 @@
 package com.example.miras.androidnewsapp.news
 
 import android.content.Intent
+import android.content.res.Configuration
+import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
@@ -41,7 +44,11 @@ class PlaceholderFragment : Fragment(),
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presenter.attachView(this)
-        recyclerView.layoutManager = LinearLayoutManager(activity)
+
+        if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE)
+            recyclerView.layoutManager = GridLayoutManager(activity, 2)
+        else
+            recyclerView.layoutManager = LinearLayoutManager(activity)
     }
 
     override fun onItemClicked(news: News) {
