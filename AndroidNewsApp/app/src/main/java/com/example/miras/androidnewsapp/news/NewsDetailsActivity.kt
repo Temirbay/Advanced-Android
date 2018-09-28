@@ -9,13 +9,10 @@ import kotlinx.android.synthetic.main.activity_news_details.*
 
 class NewsDetailsActivity : AppCompatActivity() {
 
-    private lateinit var news : News
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_news_details)
-        getIntents ()
-        getViews ()
 
         setSupportActionBar(main_toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
@@ -23,22 +20,17 @@ class NewsDetailsActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
 
-    }
 
-    private fun getViews() {
+        val news : News = intent.getParcelableExtra("news")
+
+        tvTitle.text = news.title
+
+        tvDate.text = news.date
+
+        tvContent.text = news.content
+
         if (news.imageUrl != "")
             Glide.with(this).load(news.imageUrl).into(main_backdrop)
-        tvTitle.text = news.title
-        tvDate.text = news.date
-        tvContent.text = news.content
     }
 
-    private fun getIntents() {
-        news = News(
-                intent.getStringExtra("title"),
-                intent.getStringExtra("data"),
-                intent.getStringExtra("content"),
-                intent.getStringExtra("imageUrl")
-        )
-    }
 }

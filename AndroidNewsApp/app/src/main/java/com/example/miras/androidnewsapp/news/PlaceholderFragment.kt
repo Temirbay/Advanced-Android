@@ -46,10 +46,7 @@ class PlaceholderFragment : Fragment(),
 
     override fun onItemClicked(news: News) {
         val intent = Intent (activity, NewsDetailsActivity::class.java)
-        intent.putExtra("title", news.title)
-        intent.putExtra("content", news.content)
-        intent.putExtra("imageUrl", news.imageUrl)
-        intent.putExtra("data", news.date)
+        intent.putExtra("news", news)
         startActivity(intent)
     }
 
