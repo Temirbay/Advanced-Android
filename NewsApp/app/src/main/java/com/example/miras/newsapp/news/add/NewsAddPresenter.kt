@@ -1,7 +1,7 @@
 package com.example.miras.newsapp.news.add
 
 import com.example.miras.newsapp.news.list.NewsListContract
-import com.example.miras.newsapp.core.BasePresenter
+import com.example.miras.newsapp.core.util.BasePresenter
 import com.example.miras.newsapp.entity.News
 
 

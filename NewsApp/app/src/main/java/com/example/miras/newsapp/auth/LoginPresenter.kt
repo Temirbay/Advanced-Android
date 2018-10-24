@@ -1,7 +1,7 @@
 package com.example.miras.newsapp.auth
 
-import com.example.miras.newsapp.core.BaseListener
-import com.example.miras.newsapp.core.BasePresenter
+import com.example.miras.newsapp.core.util.BaseListener
+import com.example.miras.newsapp.core.util.BasePresenter
 
 
 class LoginPresenter(private val repository: LoginContract.Repository)

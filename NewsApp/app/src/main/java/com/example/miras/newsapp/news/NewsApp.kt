@@ -1,5 +1,7 @@
 package com.example.miras.newsapp.news
 
+import com.example.miras.newsapp.core.api.Constants
+import com.example.miras.newsapp.core.createService
 import com.example.miras.newsapp.news.list.NewsListContract
 import com.example.miras.newsapp.news.list.NewsListPresenter
 import com.example.miras.newsapp.news.add.NewsAddContract
@@ -12,5 +14,7 @@ val newsApp = module {
     factory { NewsAddPresenter(get()) as NewsAddContract.Presenter }
 
 
-    single { NewsRepository(get()) as NewsListContract.Repository }
+    factory { NewsRepository(get()) as NewsListContract.Repository }
+
+    single { createService<NewsService>(get(), Constants.url) }
 }

@@ -1,4 +1,4 @@
-package com.example.miras.newsapp.core
+package com.example.miras.newsapp.core.util
 
 
 interface IPresenter<V> {

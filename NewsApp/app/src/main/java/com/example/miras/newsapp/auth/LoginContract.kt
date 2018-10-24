@@ -1,8 +1,8 @@
 package com.example.miras.newsapp.auth
 
-import com.example.miras.newsapp.core.BaseListener
-import com.example.miras.newsapp.core.IPresenter
-import com.example.miras.newsapp.core.IView
+import com.example.miras.newsapp.core.util.BaseListener
+import com.example.miras.newsapp.core.util.IPresenter
+import com.example.miras.newsapp.core.util.IView
 
 
 interface LoginContract {

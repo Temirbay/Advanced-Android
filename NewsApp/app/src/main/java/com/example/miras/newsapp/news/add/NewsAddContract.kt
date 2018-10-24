@@ -1,7 +1,7 @@
 package com.example.miras.newsapp.news.add
 
-import com.example.miras.newsapp.core.IPresenter
-import com.example.miras.newsapp.core.IView
+import com.example.miras.newsapp.core.util.IPresenter
+import com.example.miras.newsapp.core.util.IView
 
 
 interface NewsAddContract {

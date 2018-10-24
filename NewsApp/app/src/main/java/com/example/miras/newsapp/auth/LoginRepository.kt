@@ -1,7 +1,7 @@
 package com.example.miras.newsapp.auth
 
 import com.example.miras.newsapp.storage.LocalStorage
-import com.example.miras.newsapp.core.BaseListener
+import com.example.miras.newsapp.core.util.BaseListener
 
 
 class LoginRepository(private val localStorage : LocalStorage)
