@@ -5,6 +5,7 @@ import com.example.miras.newsapp.core.util.IPresenter
 import com.example.miras.newsapp.core.util.IView
 import com.example.miras.newsapp.entity.News
 import io.reactivex.Observable
+import okhttp3.ResponseBody
 
 
 interface NewsListContract {
@@ -12,6 +13,8 @@ interface NewsListContract {
     interface View : IView<Presenter> {
         fun setAdapter (items : ArrayList<News>)
         fun showMessage (message : String)
+        fun showProgress ()
+        fun hideProgress ()
     }
 
     interface Presenter : IPresenter<View> {
@@ -20,7 +23,7 @@ interface NewsListContract {
 
     interface Repository {
         fun getNews () : Observable<List<News>>
-        fun addNews (item : News)
+        fun addNews (item : News) : Observable<ResponseBody>
     }
 
 }

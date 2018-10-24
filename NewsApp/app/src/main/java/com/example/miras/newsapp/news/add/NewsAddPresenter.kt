@@ -1,7 +1,10 @@
 package com.example.miras.newsapp.news.add
 
+import android.annotation.SuppressLint
+import com.example.miras.newsapp.core.api.errorHandler.RetrofitException
 import com.example.miras.newsapp.news.list.NewsListContract
 import com.example.miras.newsapp.core.util.BasePresenter
+import com.example.miras.newsapp.core.util.Logger
 import com.example.miras.newsapp.entity.News
 
 
@@ -15,13 +18,16 @@ class NewsAddPresenter(private val repository: NewsListContract.Repository)
         detachView()
     }
 
+    @SuppressLint("CheckResult")
     override fun addNews(title: String, date: String, content: String, url : String) {
         if (validate (title, date, content)) {
-            repository.addNews(News (0, title, date, content, url))
-            getView()?.onSuccess()
+            repository.addNews(News (0, title, date, content, url)).subscribe ({
+                getView()?.onSuccess()
+            }, { it as RetrofitException
+                Logger.msg("getNews error: ${it.getErrorBody()?.message}")
+            })
         }
-        else
-            getView()?.onError()
+        else getView()?.onError()
     }
 
     private fun validate(title: String, date: String, content: String): Boolean {

@@ -10,7 +10,9 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import com.example.miras.newsapp.entity.News
 import com.example.miras.newsapp.news.NewsAdapter
@@ -29,6 +31,7 @@ class MainActivity : AppCompatActivity(),
         NewsListContract.View,
         NewsItemClicked,
         NavigationView.OnNavigationItemSelectedListener {
+
 
     private val code = 1
 
@@ -55,7 +58,7 @@ class MainActivity : AppCompatActivity(),
         nav_view.setNavigationItemSelectedListener(this)
 
         if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE)
-            recyclerView.layoutManager = GridLayoutManager(this, 2)
+            recyclerView.layoutManager = GridLayoutManager(this, 2) as RecyclerView.LayoutManager?
         else
             recyclerView.layoutManager = LinearLayoutManager(this)
 
@@ -115,6 +118,14 @@ class MainActivity : AppCompatActivity(),
         intent.putExtra("content", news.content)
         intent.putExtra("url", news.imageUrl)
         startActivity(intent)
+    }
+
+    override fun hideProgress() {
+        progress.visibility = View.GONE
+    }
+
+    override fun showProgress() {
+        progress.visibility = View.VISIBLE
     }
 
 }

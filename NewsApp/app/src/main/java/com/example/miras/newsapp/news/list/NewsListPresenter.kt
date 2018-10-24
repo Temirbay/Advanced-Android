@@ -16,8 +16,10 @@ class NewsListPresenter(private val repository: NewsListContract.Repository)
 
     @SuppressLint("CheckResult")
     override fun getNews() {
+        getView()?.showProgress()
         repository.getNews().subscribe ({
             getView()?.setAdapter(it as ArrayList<News>)
+            getView()?.hideProgress()
         }, { it as RetrofitException
             Logger.msg("getNews error: ${it.getErrorBody()?.message}")
         })
