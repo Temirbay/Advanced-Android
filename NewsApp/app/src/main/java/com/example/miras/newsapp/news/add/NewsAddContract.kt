@@ -2,13 +2,14 @@ package com.example.miras.newsapp.news.add
 
 import com.example.miras.newsapp.core.util.IPresenter
 import com.example.miras.newsapp.core.util.IView
+import com.example.miras.newsapp.entity.News
 
 
 interface NewsAddContract {
 
     interface View : IView<Presenter> {
         fun showMessage (message : String)
-        fun onSuccess ()
+        fun onSuccess (news : News)
         fun onError ()
     }
 

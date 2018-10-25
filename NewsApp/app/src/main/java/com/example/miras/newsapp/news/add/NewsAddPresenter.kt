@@ -21,8 +21,9 @@ class NewsAddPresenter(private val repository: NewsListContract.Repository)
     @SuppressLint("CheckResult")
     override fun addNews(title: String, date: String, content: String, url : String) {
         if (validate (title, date, content)) {
-            repository.addNews(News (0, title, date, content, url)).subscribe ({
-                getView()?.onSuccess()
+            val news = News (0, title, date, content, url)
+            repository.addNews(news).subscribe ({
+                getView()?.onSuccess(news)
             }, { it as RetrofitException
                 Logger.msg("getNews error: ${it.getErrorBody()?.message}")
             })

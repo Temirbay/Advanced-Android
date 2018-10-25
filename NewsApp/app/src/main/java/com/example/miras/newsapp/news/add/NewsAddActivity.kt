@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.example.miras.newsapp.R
+import com.example.miras.newsapp.entity.News
 import kotlinx.android.synthetic.main.activity_news_add.*
 import org.koin.android.ext.android.inject
 
@@ -36,8 +37,9 @@ class NewsAddActivity : AppCompatActivity(), NewsAddContract.View {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
-    override fun onSuccess() {
+    override fun onSuccess(news : News) {
         val returnIntent = Intent()
+        returnIntent.putExtra("news", news)
         setResult(Activity.RESULT_OK, returnIntent)
         finish()
     }

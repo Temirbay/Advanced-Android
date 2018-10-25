@@ -7,6 +7,7 @@ import android.view.MenuItem
 import com.bumptech.glide.Glide
 import com.example.miras.newsapp.MainActivity
 import com.example.miras.newsapp.R
+import com.example.miras.newsapp.entity.News
 import kotlinx.android.synthetic.main.activity_news_details.*
 
 class NewsDetailsActivity : AppCompatActivity() {
@@ -21,17 +22,14 @@ class NewsDetailsActivity : AppCompatActivity() {
 
         supportActionBar?.setHomeButtonEnabled(true)
 
-        val title = intent.getStringExtra("title")
-        val date = intent.getStringExtra("date")
-        val content = intent.getStringExtra("content")
-        val url = intent.getStringExtra("url")
+        val news = intent.getSerializableExtra("news") as News
 
-        tvTitle.text = title
-        tvDate.text = date
-        tvContent.text = content
+        tvTitle.text = news.title
+        tvDate.text = news.date
+        tvContent.text = news.content
 
-        if (url != "")
-            Glide.with(this).load(url).into(main_backdrop)
+        if (news.imageUrl != "")
+            Glide.with(this).load(news.imageUrl).into(main_backdrop)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {

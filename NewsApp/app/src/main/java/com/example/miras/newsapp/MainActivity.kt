@@ -14,6 +14,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import com.example.miras.newsapp.core.util.Logger
 import com.example.miras.newsapp.entity.News
 import com.example.miras.newsapp.news.NewsAdapter
 import com.example.miras.newsapp.news.NewsItemClicked
@@ -34,6 +35,9 @@ class MainActivity : AppCompatActivity(),
 
 
     private val code = 1
+
+    private lateinit var list : ArrayList<News>
+    private lateinit var adapter : NewsAdapter
 
     override val presenter: NewsListContract.Presenter
             by inject { parametersOf(this) }
@@ -63,13 +67,14 @@ class MainActivity : AppCompatActivity(),
             recyclerView.layoutManager = LinearLayoutManager(this)
 
 
+        list = ArrayList()
+        adapter = NewsAdapter(this, list, this)
+        recyclerView.adapter = adapter
+
+        presenter.getNews()
         presenter.attachView(this)
     }
 
-    override fun onResume() {
-        super.onResume()
-        presenter.getNews()
-    }
 
     override fun onBackPressed() {
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
@@ -84,10 +89,14 @@ class MainActivity : AppCompatActivity(),
 
         if (requestCode == code) {
             if (resultCode == Activity.RESULT_OK) {
-                presenter.getNews()
+                val news = data?.getSerializableExtra("news") as News
+                addItem(news)
+                setAdapter()
+                showMessage("Added")
             }
         }
     }
+
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
@@ -100,11 +109,20 @@ class MainActivity : AppCompatActivity(),
     }
 
 
-    override fun setAdapter(items: ArrayList<News>) {
+    override fun setAdapter() {
         runOnUiThread {
-            val adapter = NewsAdapter(this, items, this)
+            adapter = NewsAdapter(this, list, this)
             recyclerView.adapter = adapter
         }
+    }
+
+    override fun setItems(items: ArrayList<News>) {
+        list.clear()
+        list.addAll(items)
+    }
+
+    override fun addItem(item: News) {
+        list.add(item)
     }
 
     override fun showMessage(message: String) {
@@ -113,10 +131,7 @@ class MainActivity : AppCompatActivity(),
 
     override fun onItemClicked(news: News) {
         val intent = Intent (this, NewsDetailsActivity::class.java)
-        intent.putExtra("title", news.title)
-        intent.putExtra("date", news.date)
-        intent.putExtra("content", news.content)
-        intent.putExtra("url", news.imageUrl)
+        intent.putExtra("news", news)
         startActivity(intent)
     }
 

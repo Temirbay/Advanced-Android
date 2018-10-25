@@ -11,7 +11,9 @@ import okhttp3.ResponseBody
 interface NewsListContract {
 
     interface View : IView<Presenter> {
-        fun setAdapter (items : ArrayList<News>)
+        fun setAdapter ()
+        fun setItems (items : ArrayList<News>)
+        fun addItem (item : News)
         fun showMessage (message : String)
         fun showProgress ()
         fun hideProgress ()
