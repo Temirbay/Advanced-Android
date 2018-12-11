@@ -1,23 +1,30 @@
 package com.example.miras.newsapp.storage
 
-import com.example.miras.newsapp.entity.News
-import com.example.miras.newsapp.entity.NewsDatabase
-import com.example.miras.newsapp.storage.RoomStorage
+import com.example.miras.newsapp.entity.Contact
+import com.example.miras.newsapp.entity.ContactDao
+import com.example.miras.newsapp.entity.ContactDatabase
+import com.example.miras.newsapp.entity.ContactGroup
 import io.reactivex.Observable
 
 
-class RoomStorageImpl(private val database : NewsDatabase) : RoomStorage {
+class RoomStorageImpl(private val database : ContactDatabase) : RoomStorage {
 
-
-    override fun getNews(): Observable<ArrayList<News>> {
-
-        return database.newsDao().getAllNews()
-                .map { it as ArrayList<News> }
+    override fun getGroupById(id: Int): Observable<ArrayList<ContactGroup>> {
+        return database.contactGroupsDao().getGroupById(id)
+                .map { it as ArrayList<ContactGroup> }
                 .toObservable()
     }
 
-    override fun insertNews(news: News) {
-        database.newsDao().insertNews(news)
+    override fun getNews(): Observable<ArrayList<Contact>> {
+        return database.contactDao().getContacts()
+                .map { it as ArrayList<Contact> }
+                .toObservable()
     }
+
+    override fun insertNews(contact: Contact) {
+        database.contactDao().insertContact(contact)
+    }
+
+
 
 }

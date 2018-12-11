@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.miras.newsapp">
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
 
     <application
         android:name=".App"
@@ -15,25 +14,21 @@
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
 
-
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme">
 
-        <activity
-            android:name=".auth.LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
 
         <activity
-            android:name=".news.details.NewsDetailsActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:name=".contact.details.ContactDetailsActivity" />
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity">
@@ -41,7 +36,7 @@
 
 
 
-        <activity android:name=".news.add.NewsAddActivity"
+        <activity android:name=".contact.add.ContactAddActivity"
             tools:ignore="WrongManifestParent">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
